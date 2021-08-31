@@ -1,14 +1,18 @@
 #include <iostream>
 using namespace std;
 
-#define ID_LEN  20
-#define MAX_SPD     200
-#define FUEL_STEP   2
-#define ACC_STEP    10
-#define BRK_STEP    10
+namespace CAR_CONST{
+    enum{
+        ID_LEN  = 20,
+        MAX_SPD = 200,
+        FUEL_STEP = 2,
+        ACC_STEP = 10,
+        BRK_STEP = 10
+    };
+}
 
 struct Car{
-    char gamerID[ID_LEN];   // 소유자 ID
+    char gamerID[CAR_CONST:: ID_LEN];   // 소유자 ID
     int fuelGauge;          // 연료량
     int curSpeed;           // 현재 속도
 
@@ -25,20 +29,20 @@ void Accel(Car &car){
         return;
     }
     else 
-        car.fuelGauge -= FUEL_STEP;
-    if(car.curSpeed+ACC_STEP >= MAX_SPD){
-        car.curSpeed = MAX_SPD;
+        car.fuelGauge -= CAR_CONST::FUEL_STEP;
+    if(car.curSpeed+CAR_CONST::ACC_STEP >= CAR_CONST::MAX_SPD){
+        car.curSpeed = CAR_CONST::MAX_SPD;
         return;
     }
-    car.curSpeed += ACC_STEP;
+    car.curSpeed += CAR_CONST::ACC_STEP;
 }
 
 void Brake(Car &car){
-    if (car.curSpeed<BRK_STEP){
+    if (car.curSpeed<CAR_CONST::BRK_STEP){
         car.curSpeed = 0;
         return;
     }
-    car.curSpeed -= BRK_STEP;
+    car.curSpeed -= CAR_CONST::BRK_STEP;
 }
 
 int main(void){
